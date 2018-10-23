@@ -1,0 +1,7 @@
+npm install -g create-react-native-app
+
+react-native init ToDoList
+
+cd ToDoList
+
+react-native run-android
