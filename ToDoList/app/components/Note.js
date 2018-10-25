@@ -21,7 +21,7 @@ type Props = {};
 export default class Note extends Component<Props> {
     render() {
         return (
-            <View key={this.props.keyval} style={style.notes}>
+            <View key={this.props.keyval} style={styles.notes}>
 
             <Text style={styles.noteText}>{this.props.val.date}</Text>
             <Text style={styles.noteText}>{this.props.val.note}</Text>
