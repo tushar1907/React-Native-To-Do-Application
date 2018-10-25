@@ -16,11 +16,28 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-
+import Note from "./Note";
 
 type Props = {};
 export default class Main extends Component<Props> {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            noteArray:[],
+            noteText:''
+        }
+    }
+
+
     render() {
+
+        let notes = this.state.noteArray.map((val, key) => {
+            return <Note key={key} keyval={key} val={val}
+                    deleteMethod={ ()=>{
+                        this.deleteMethod(key) 
+                    }} />
+        });
         return (
             <View style={styles.container}>
 
@@ -32,17 +49,26 @@ export default class Main extends Component<Props> {
 
                 <View style={styles.footer}>
                 <TextInput 
+                onChangeText={(noteText) => this.setState({noteText})}
+                value={this.state.noteText}
                 style={styles.textInput}
                 placeholder='>note'
                 placeholderTextColor='white'
                 underlineColorAndroid='transparent'></TextInput></View>
 
-                <TouchableOpacity style={styles.addButton}>
+                <TouchableOpacity 
+                onPress={ this.addNote.bind(this)} 
+                style={styles.addButton}>
+
                     <Text style={styles.addButtonText}>+</Text>
 
                 </TouchableOpacity>
             </View>
         );
+    }
+
+    addNote() {
+        alert("Note added successfully");
     }
 }
 
