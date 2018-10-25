@@ -36,6 +36,11 @@ export default class Main extends Component<Props> {
                 placeholder='>note'
                 placeholderTextColor='white'
                 underlineColorAndroid='transparent'></TextInput></View>
+
+                <TouchableOpacity style={styles.addButton}>
+                    <Text style={styles.addButtonText}>+</Text>
+
+                </TouchableOpacity>
             </View>
         );
     }
