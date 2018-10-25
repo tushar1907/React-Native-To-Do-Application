@@ -21,11 +21,11 @@ import Note from "./Note";
 type Props = {};
 export default class Main extends Component<Props> {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            noteArray:[],
-            noteText:''
+            noteArray: [],
+            noteText: ''
         }
     }
 
@@ -34,9 +34,9 @@ export default class Main extends Component<Props> {
 
         let notes = this.state.noteArray.map((val, key) => {
             return <Note key={key} keyval={key} val={val}
-                    deleteMethod={ ()=>{
-                        this.deleteMethod(key) 
-                    }} />
+                deleteMethod={() => {
+                    this.deleteMethod(key)
+                }} />
         });
         return (
             <View style={styles.container}>
@@ -45,20 +45,24 @@ export default class Main extends Component<Props> {
                     <Text style={styles.headerText}>- NOTER -</Text>
                 </View>
 
-                <ScrollView style={styles.scrollContainer}></ScrollView>
+                <ScrollView style={styles.scrollContainer}>
+                    {notes}</ScrollView>
 
                 <View style={styles.footer}>
-                <TextInput 
-                onChangeText={(noteText) => this.setState({noteText})}
-                value={this.state.noteText}
-                style={styles.textInput}
-                placeholder='>note'
-                placeholderTextColor='white'
-                underlineColorAndroid='transparent'></TextInput></View>
 
-                <TouchableOpacity 
-                onPress={ this.addNote.bind(this)} 
-                style={styles.addButton}>
+                    <TextInput
+                        onChangeText={(noteText) => this.setState({ noteText })}
+                        value={this.state.noteText}
+                        style={styles.textInput}
+                        placeholder='>note'
+                        placeholderTextColor='white'
+                        underlineColorAndroid='transparent'>
+                    </TextInput>
+                </View>
+
+                <TouchableOpacity
+                    onPress={this.addNote.bind(this)}
+                    style={styles.addButton}>
 
                     <Text style={styles.addButtonText}>+</Text>
 
@@ -69,6 +73,16 @@ export default class Main extends Component<Props> {
 
     addNote() {
         alert("Note added successfully");
+        if (this.state.noteText) {
+            var date = new Date();
+            this.state.noteArray.push({
+                'date': date.getFullYear() +
+                    "/" + (date.getMonth() + 1) +
+                    "/" + (date.getDate()),
+            })
+            this.setState({ noteArray: this.state.noteArray })
+            this.setState({ noteText : this.state.noteText })
+        }
     }
 }
 
@@ -79,7 +93,7 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: '#E91E63',
         alignItems: 'center',
-        justifyContent:'center',
+        justifyContent: 'center',
         borderBottomWidth: 10,
         borderBottomColor: '#ddd'
     },
@@ -104,7 +118,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         padding: 20,
         backgroundColor: '#252525',
-        borderTopWidth:2,
+        borderTopWidth: 2,
         borderTopColor: '#ededed'
     },
     addButton: {
