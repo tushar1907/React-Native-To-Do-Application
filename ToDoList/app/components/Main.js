@@ -13,7 +13,8 @@ import {
     StyleSheet,
     TextInput,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native';
 
 import Note from "./Note";
@@ -42,7 +43,7 @@ export default class Main extends Component<Props> {
             <View style={styles.container}>
 
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>- NOTER -</Text>
+                    <Text style={styles.headerText}>- NOTES APPLICATION -</Text>
                 </View>
 
                 <ScrollView style={styles.scrollContainer}>
@@ -72,7 +73,7 @@ export default class Main extends Component<Props> {
     }
 
     addNote() {
-        
+
         if (this.state.noteText) {
             var date = new Date();
             this.state.noteArray.push({
@@ -80,19 +81,28 @@ export default class Main extends Component<Props> {
                 'note': this.state.noteText
             })
             this.setState({ noteArray: this.state.noteArray })
-            this.setState({ noteText : '' })
+            this.setState({ noteText: '' })
             alert("Note added successfully");
         }
-        else{
+        else {
             alert("Note title cannot be blank !");
         }
     }
 
-    deleteMethod(key){
+    deleteMethod(key) {
 
-        this.state.noteArray.splice(key, 1);
-        this.setState({ noteArray: this.state.noteArray })
-
+        Alert.alert(
+            'Delete Alert',
+            'Are you sure you want to delete this note...?',
+            [
+              {text: 'YES', onPress: () => {
+                this.state.noteArray.splice(key, 1);
+                this.setState({ noteArray: this.state.noteArray })
+                alert("Note deleted successfully !")
+              }},
+              {text: 'NO', onPress: () => console.warn('NO Pressed')},
+            ]
+          );
     }
 }
 
@@ -101,7 +111,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        backgroundColor: '#E91E63',
+        backgroundColor: '#0000FF',
         alignItems: 'center',
         justifyContent: 'center',
         borderBottomWidth: 10,
@@ -136,7 +146,7 @@ const styles = StyleSheet.create({
         zIndex: 11,
         right: 20,
         bottom: 90,
-        backgroundColor: '#E91E63',
+        backgroundColor: '#0000FF',
         width: 70,
         height: 70,
         borderRadius: 35,
