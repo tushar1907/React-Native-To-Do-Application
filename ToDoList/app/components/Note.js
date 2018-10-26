@@ -45,13 +45,16 @@ const styles = StyleSheet.create({
         borderLeftWidth: 10,
         borderLeftColor: '#E91E63'
     },
-    
+
     noteDelete: {
         position: 'absolute',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#2980b9',
         padding: 10,
+        width: 10,
+        height: 10,
+        borderRadius: 35,
         top: 10,
         bottom: 10,
         right: 10

@@ -54,7 +54,7 @@ export default class Main extends Component<Props> {
                         onChangeText={(noteText) => this.setState({ noteText })}
                         value={this.state.noteText}
                         style={styles.textInput}
-                        placeholder='>note'
+                        placeholder='Enter note title'
                         placeholderTextColor='white'
                         underlineColorAndroid='transparent'>
                     </TextInput>
@@ -91,7 +91,7 @@ export default class Main extends Component<Props> {
     deleteMethod(key){
 
         this.state.noteArray.splice(key, 1);
-        this.setState.noteArray({ noteArray: this.state.noteArray })
+        this.setState({ noteArray: this.state.noteArray })
 
     }
 }
