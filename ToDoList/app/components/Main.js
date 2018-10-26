@@ -72,17 +72,27 @@ export default class Main extends Component<Props> {
     }
 
     addNote() {
-        alert("Note added successfully");
+        
         if (this.state.noteText) {
             var date = new Date();
             this.state.noteArray.push({
-                'date': date.getFullYear() +
-                    "/" + (date.getMonth() + 1) +
-                    "/" + (date.getDate()),
+                'date': (date.getMonth() + 1) + "/" + (date.getDate()) + "/" + date.getFullYear(),
+                'note': this.state.noteText
             })
             this.setState({ noteArray: this.state.noteArray })
-            this.setState({ noteText : this.state.noteText })
+            this.setState({ noteText : '' })
+            alert("Note added successfully");
         }
+        else{
+            alert("Note title cannot be blank !");
+        }
+    }
+
+    deleteMethod(key){
+
+        this.state.noteArray.splice(key, 1);
+        this.setState.noteArray({ noteArray: this.state.noteArray })
+
     }
 }
 

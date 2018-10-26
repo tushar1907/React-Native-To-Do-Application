@@ -21,16 +21,12 @@ type Props = {};
 export default class Note extends Component<Props> {
     render() {
         return (
-            <View key={this.props.keyval} style={styles.notes}>
-
-            <Text style={styles.noteText}>{this.props.val.date}</Text>
-            <Text style={styles.noteText}>{this.props.val.note}</Text>
-
-            <TouchableOpacity 
-            onPress={this.props.deleteMethod}
-            style={styles.noteDelete}>
-            <Text style={styles.noteDeleteText}>-</Text></TouchableOpacity>
-
+            <View key={this.props.keyval} style={styles.note}>
+                <Text style={styles.noteText}>{this.props.val.date}</Text>
+                <Text style={styles.noteText}>{this.props.val.note}</Text>
+                <TouchableOpacity onPress={this.props.deleteMethod} style={styles.noteDelete}>
+                    <Text style={styles.noteDeleteText}>D</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -49,6 +45,7 @@ const styles = StyleSheet.create({
         borderLeftWidth: 10,
         borderLeftColor: '#E91E63'
     },
+    
     noteDelete: {
         position: 'absolute',
         justifyContent: 'center',
