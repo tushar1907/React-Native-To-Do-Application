@@ -5,3 +5,6 @@ react-native init ToDoList
 cd ToDoList
 
 react-native run-android
+
+
+react-native run-android
